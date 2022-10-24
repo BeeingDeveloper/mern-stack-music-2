@@ -1,0 +1,7 @@
+.active{
+    color: red;
+    transition: 0.1s ease-in;
+}
+.active:hover{
+    color: rgb(41, 60, 78);
+}

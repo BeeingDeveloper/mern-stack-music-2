@@ -5,7 +5,8 @@ import SignIn from './components/SignIn';
 import { useEffect, useState } from 'react';
 import {app} from './config/firebase.config';
 import { getAuth } from 'firebase/auth';
-
+import {AnimatePresence} from 'framer-motion'
+import Navbar from './components/Navbar';
   
 
 function App() {
@@ -31,12 +32,17 @@ function App() {
 
 
   return (
-    <div className="w-screen h-screen bg-primary flex justify-center items-center font-kanit">
-      <Routes>
-        <Route path='/*' element={<Home /> } />
-        <Route path='/signin' element={<SignIn setAuth={setAuth} /> } />
-      </Routes>
-    </div>
+    <AnimatePresence mode='wait'>
+      <div className=" font-kanit">
+        <Navbar />
+        <div className=" h-auto min-w-[680px] bg-primary flex justify-center items-center font-kanit">
+          <Routes>
+            <Route path='/*' element={<Home /> } />
+            <Route path='/signin' element={<SignIn setAuth={setAuth} /> } />
+          </Routes>
+        </div>
+      </div>
+    </AnimatePresence>
   );
 }
 
