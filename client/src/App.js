@@ -1,44 +1,56 @@
-import './App.css';
-import {Route, Routes, useNavigate} from 'react-router-dom'
-import Home from './components/Home';
-import SignIn from './components/SignIn';
-import { useEffect, useState } from 'react';
-import {app} from './config/firebase.config';
-import { getAuth } from 'firebase/auth';
-import {AnimatePresence} from 'framer-motion'
-import Navbar from './components/Navbar';
-  
+import "./App.css";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Home from "./components/Home";
+import SignIn from "./components/SignIn";
+import { useEffect, useState } from "react";
+import { app } from "./config/firebase.config";
+import { getAuth } from "firebase/auth";
+import { AnimatePresence } from "framer-motion";
+import Navbar from "./components/Navbar";
+import { validateUser } from "./api/api";
 
 function App() {
   const firebaseAuth = getAuth(app);
-  const navigate = useNavigate( )
-  const [auth, setAuth] = useState(false || window.localStorage.getItem("auth") === "true" );
+  const navigate = useNavigate();
+  const [auth, setAuth] = useState(
+    false || window.localStorage.getItem("auth") === "true"
+  );
 
+
+
+
+  
+  // ---------------------------------------------------------------------------
   //CHECK AUTHORIZATION WHEN PAGE LOADS
   useEffect(() => {
-    firebaseAuth.onAuthStateChanged((userCred)=>{
-      if(userCred){
-        userCred.getIdToken().then((token)=>{
-          console.log(token);
+    firebaseAuth.onAuthStateChanged((userCred) => {
+      if (userCred) {
+        userCred.getIdToken().then((token) => {
+          // console.log(token);
+          validateUser(token).then((data) => {
+            console.log(data);
+          });
         });
-      }else{
+      } else {
         setAuth(false);
         window.localStorage.setItem("auth", "false");
         navigate("/login");
       }
     });
   }, []);
+  // ---------------------------------------------------------------------------
+
 
 
 
   return (
-    <AnimatePresence mode='wait'>
+    <AnimatePresence mode="wait">
       <div className=" font-kanit">
         <Navbar />
         <div className=" h-auto min-w-[680px] bg-primary flex justify-center items-center font-kanit">
           <Routes>
-            <Route path='/*' element={<Home /> } />
-            <Route path='/signin' element={<SignIn setAuth={setAuth} /> } />
+            <Route path="/*" element={<Home />} />
+            <Route path="/signin" element={<SignIn setAuth={setAuth} />} />
           </Routes>
         </div>
       </div>
