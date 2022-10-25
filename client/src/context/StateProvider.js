@@ -1,7 +1,9 @@
 import React, { createContext, useReducer } from 'react'
+import { reducer } from './reducer';
 
-const StateContext = createContext();
-const StateProvider = () => {
+
+export const StateContext = createContext();
+const StateProvider = (props) => {
 
 
     const initialState = {
