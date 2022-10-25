@@ -6,9 +6,13 @@ import './style.css'
 import { Popover, PopoverTrigger, PopoverContent, Button,} from '@chakra-ui/react'
 import { getAuth } from 'firebase/auth';
 import { app } from '../config/firebase.config';
-import PROFILE_ICON from '../assets/img/profile.png'
+import PROFILE_ICON from '../assets/img/profile.png';
+import { motion } from 'framer-motion';
+// -------------------------------------------------------------------------------------------------
+
 const style = {
-    divider: {height: '2px', width: '100%', background: '#a3b3cc'}
+    divider: {height: '2px', width: '100%', background: '#a3b3cc'},
+    popup: {}
 }
 
 const Navbar = () => {
@@ -21,10 +25,8 @@ const Navbar = () => {
     let firstName = undefined;
     let profileIMG = imgURL? imgURL : PROFILE_ICON;
     
-    console.log(state);
-    if(name){
-        firstName = name.split(" ")[0];
-    }
+    if(name) firstName = name.split(" ")[0];
+
     
 
     const navigate = useNavigate();
@@ -71,13 +73,22 @@ const Navbar = () => {
             <Popover >
               <PopoverTrigger>
                 <Button>
-                    <div className='flex' onClick={!name?()=>navigate('/signin') : ()=>navigate('')} >
-                        <p className=' my-3 mx-3' >{firstName?firstName: 'Sign in'} </p>
-                        <img src={profileIMG} className='h-8 w-8 my-2 rounded-3xl shadow-xl' />
-                    </div>
+                    <motion.div     
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.1 }} 
+                        whileHover={{scale: 0.92}}
+                        className='flex' 
+                        onClick={!name?()=>navigate('/signin') : ()=>navigate('')} 
+                        >
+                            <p className=' my-3 mx-3' >{firstName?firstName: 'Sign in'} </p>
+                            <img src={profileIMG} className='h-8 w-8 my-2 rounded-3xl shadow-xl' />
+                    </motion.div>
                 </Button>
               </PopoverTrigger>
-              <PopoverContent style={{  width: '12rem', padding:'0.25rem', right: '2.5rem', borderRadius: '0.5rem', boxShadow: '10px 10px 25px gray', display:state.user? 'block': 'none' }}>
+              
+              <PopoverContent 
+                className=' w-44 p-1 right-8 rounded-lg'
+                style={{ boxShadow: '10px 10px 25px gray', display:state.user? 'block': 'none' }}>
                 <p>Profile</p>
                 <p>My Favorites</p>
                 <div style={style.divider}></div>
