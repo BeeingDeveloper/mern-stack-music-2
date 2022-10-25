@@ -1,14 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import {FcGoogle} from 'react-icons/fc'
 import { app } from '../config/firebase.config'
 import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { StateContext } from '../context/StateProvider';
+import { actionType } from '../context/reducer';
+import { validateUser } from '../api/api';
+
 
 const SignIn = ({setAuth}) => {
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
-
+  const {state, dispatch } = useContext(StateContext);
+  console.log("login page: ", state);
   // SIGIN IN WITH GOOGLE FUNCTION==================================
   const loginWithGoogle = async ()=>{
     await signInWithPopup(firebaseAuth, provider).then((userCred)=>{
@@ -19,11 +24,14 @@ const SignIn = ({setAuth}) => {
         firebaseAuth.onAuthStateChanged((userCred)=>{
           if(userCred){
             userCred.getIdToken().then((token)=>{
-              console.log(token);
+              validateUser(token).then((data)=>{
+                dispatch({type: actionType.SET_USER, user: data})
+              })
             });
             navigate("/", {replace: true});
           }else{
             setAuth(false);
+            dispatch({type: actionType.SET_USER, user: null});
             navigate("/signin");
           }
         })
