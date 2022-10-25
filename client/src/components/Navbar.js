@@ -21,7 +21,7 @@ const Navbar = () => {
     let firstName = undefined;
     let profileIMG = imgURL? imgURL : PROFILE_ICON;
     
-    console.log(state.user?.user?.imageURL);
+    console.log(state);
     if(name){
         firstName = name.split(" ")[0];
     }
@@ -71,15 +71,13 @@ const Navbar = () => {
             <Popover >
               <PopoverTrigger>
                 <Button>
-                    <div className='flex' onClick={()=>navigate('/signin')} >
+                    <div className='flex' onClick={!name?()=>navigate('/signin') : ()=>navigate('')} >
                         <p className=' my-3 mx-3' >{firstName?firstName: 'Sign in'} </p>
-                        <img src={state.user?.user?.imageURL} className='h-8 w-8 my-2 rounded-3xl shadow-xl' />
+                        <img src={profileIMG} className='h-8 w-8 my-2 rounded-3xl shadow-xl' />
                     </div>
                 </Button>
               </PopoverTrigger>
               <PopoverContent style={{  width: '12rem', padding:'0.25rem', right: '2.5rem', borderRadius: '0.5rem', boxShadow: '10px 10px 25px gray', display:state.user? 'block': 'none' }}>
-                {/* <PopoverArrow /> */}
-                {/* <PopoverCloseButton /> */}
                 <p>Profile</p>
                 <p>My Favorites</p>
                 <div style={style.divider}></div>
