@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import { validateUser } from "./api/api";
 import { StateContext } from "./context/StateProvider";
 import { actionType } from "./context/reducer";
+import Dashboard from "./components/Dashboard";
 // --------------------------------------------------------------------------
 
 
@@ -60,6 +61,7 @@ function App() {
           <Routes>
             <Route path="/*" element={<Home />} />
             <Route path="/signin" element={<SignIn setAuth={setAuth} />} />
+            <Route path="/dashboard/*" element={<Dashboard /> } />
           </Routes>
         </div>
       </div>

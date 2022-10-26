@@ -89,9 +89,18 @@ const Navbar = () => {
               <PopoverContent 
                 className=' w-44 p-1 right-8 rounded-lg'
                 style={{ boxShadow: '10px 10px 25px gray', display:state.user? 'block': 'none' }}>
-                <p>Profile</p>
-                <p>My Favorites</p>
+                <p className=' text-slate-500' >Profile</p>
+                <p className=' text-slate-500' >My Favorites</p>
                 <div style={style.divider}></div>
+
+                {
+                    state.user?.user?.role === 'admin' && (
+                    <NavLink to='/dashboard/home' style={{cursor: 'pointer'}}>
+                        Dashboard
+                    </NavLink>
+                    )
+                }
+
                 <h6 onClick={logOut}style={{cursor: 'pointer'}}>Sign Out</h6>
               </PopoverContent>
             </Popover>
