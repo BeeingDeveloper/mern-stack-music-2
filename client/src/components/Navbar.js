@@ -45,7 +45,7 @@ const Navbar = () => {
 
 
   return (
-    <header className=' flex '>
+    <header className='fixed w-screen flex z-10 bg-slate-800 text-slate-400'>
         <div className=' w-10/12 flex justify-between m-auto'>
 
 
@@ -80,18 +80,19 @@ const Navbar = () => {
                         className='flex' 
                         onClick={!name?()=>navigate('/signin') : ()=>navigate('')} 
                         >
-                            <p className=' my-3 mx-3' >{firstName?firstName: 'Sign in'} </p>
+                            <h6 className=' my-3 mx-3' >{firstName?firstName: 'Sign in'} </h6>
                             <img src={profileIMG} className='h-8 w-8 my-2 rounded-3xl shadow-xl' />
                     </motion.div>
                 </Button>
               </PopoverTrigger>
               
               <PopoverContent 
-                className=' w-44 p-1 right-8 rounded-lg'
-                style={{ boxShadow: '10px 10px 25px gray', display:state.user? 'block': 'none' }}>
+                className=' w-44 p-1 right-8 rounded-lg bg-slate-900'
+                style={{ boxShadow: '10px 10px 25px #4f476e', display:state.user? 'block': 'none' }}>
                 <p>Profile</p>
                 <p>My Favorites</p>
                 <div style={style.divider}></div>
+                <NavLink to='/dashboard/home' style={{cursor: 'pointer'}}>Dashboard</NavLink>
                 <h6 onClick={logOut}style={{cursor: 'pointer'}}>Sign Out</h6>
               </PopoverContent>
             </Popover>

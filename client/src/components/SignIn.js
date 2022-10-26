@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { StateContext } from '../context/StateProvider';
 import { actionType } from '../context/reducer';
 import { validateUser } from '../api/api';
+import VDO from '../assets/video/music-beat.mp4'
+
 
 
 const SignIn = ({setAuth}) => {
@@ -13,8 +15,13 @@ const SignIn = ({setAuth}) => {
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
   const {state, dispatch } = useContext(StateContext);
-  console.log("login page: ", state);
-  // SIGIN IN WITH GOOGLE FUNCTION==================================
+  console.log(state);
+
+
+
+
+// ------------------------------------------------------------------------------------------------
+  // SIGIN IN WITH GOOGLE FUNCTION
   const loginWithGoogle = async ()=>{
     await signInWithPopup(firebaseAuth, provider).then((userCred)=>{
       if(userCred){
@@ -39,11 +46,12 @@ const SignIn = ({setAuth}) => {
       }
     })
   }
-  //===============================================================
+// ------------------------------------------------------------------------------------------------
 
 
 
 
+  // ==============================================
   //IF USER ALREADY LOGGED IN HEAD TO THE HOME PAGE
   useEffect(() => {
     if(window.localStorage.getItem("auth") === "true"){
@@ -55,10 +63,19 @@ const SignIn = ({setAuth}) => {
 
 
   return (
-    <div className="absolute inset-0 bg-darkOverlay flex items-center justify-center p-4">
-      <div className='flex items-center justify-center gap-2 p-2 rounded-md bg-cardOverlay hover:bg-card transition-all ease-in-out duration-600 shadow-xl' onClick={loginWithGoogle} >
+    <div className="absolute inset-0 bg-darkOverlay flex items-center justify-center overflow-hidden">
+      <video
+      src={VDO}
+      type="video/mp4"
+      loop
+      muted
+      autoPlay
+      style={{ height: '150vh'}}
+      // className=' w-screen h-screen object-cover'
+      ></video>
+      <div className='absolute top-96 flex items-center justify-center gap-2 rounded-md bg-cardOverlay hover:bg-card  transition-all ease-in-out duration-600 shadow-xl' onClick={loginWithGoogle} >
         <FcGoogle />
-        <p>Sign in with Google</p>
+        <h6 className='h-6 text-white hover:text-slate-700'>Sign in with Google</h6>
       </div>
     </div>
   )

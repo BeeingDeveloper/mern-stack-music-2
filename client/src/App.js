@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import { validateUser } from "./api/api";
 import { StateContext } from "./context/StateProvider";
 import { actionType } from "./context/reducer";
+import Dashboard from "./components/Dashboard";
 // --------------------------------------------------------------------------
 
 
@@ -54,12 +55,13 @@ function App() {
 
   return (
     <AnimatePresence mode="wait">
-      <div className=" font-kanit">
+      <div className=" font-kanit min-h-screen bg-slate-900">
         <Navbar />
-        <div className=" h-auto min-w-[680px] bg-primary flex justify-center items-center font-kanit">
+        <div className="h-auto min-w-[680px] flex justify-center items-center font-kanit">
           <Routes>
             <Route path="/*" element={<Home />} />
             <Route path="/signin" element={<SignIn setAuth={setAuth} />} />
+            <Route path="/dashboard/home" element={<Dashboard /> } />
           </Routes>
         </div>
       </div>
