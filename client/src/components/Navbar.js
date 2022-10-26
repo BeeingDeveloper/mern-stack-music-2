@@ -55,7 +55,7 @@ const Navbar = () => {
 
             <ul className='flex items-center justify-center ml-7 gap-3'>
                 <a href='#home' onClick={()=>setActiveNav('#home')} className={activeNav === "#home" ? 'active' : ''} >
-                    <NavLink to={'/home'} >Home</NavLink>    
+                    <NavLink to={'/'} >Home</NavLink>    
                 </a>
                 <a href='#musics' onClick={()=>setActiveNav('#musics')} className={activeNav === "#musics" ? 'active' : ''} >
                     <NavLink to={'/musics'} >Musics</NavLink>    
@@ -87,12 +87,11 @@ const Navbar = () => {
               </PopoverTrigger>
               
               <PopoverContent 
-                className=' w-44 p-1 right-8 rounded-lg bg-slate-900'
-                style={{ boxShadow: '10px 10px 25px #4f476e', display:state.user? 'block': 'none' }}>
+                className=' w-44 p-1 right-8 rounded-lg'
+                style={{ boxShadow: '10px 10px 25px gray', display:state.user? 'block': 'none' }}>
                 <p>Profile</p>
                 <p>My Favorites</p>
                 <div style={style.divider}></div>
-                <NavLink to='/dashboard/home' style={{cursor: 'pointer'}}>Dashboard</NavLink>
                 <h6 onClick={logOut}style={{cursor: 'pointer'}}>Sign Out</h6>
               </PopoverContent>
             </Popover>
