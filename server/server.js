@@ -15,7 +15,7 @@ const port = process.env.PORT || 8000;
 
 // ---------------------------------------------------------------
 //SETUP MIDDLEWARE:
-app.use(cors());
+app.use(cors({origin: true}));
 app.use(express.json());
 // ---------------------------------------------------------------
 
@@ -43,6 +43,19 @@ connection.once("open", ()=>{
 // GETTING ALL ROUTES---------------------------------------------
 const userRoute = require('./routes/auth');
 app.use("/api/users/", userRoute);
+
+//Artist Routes
+const artistRoute = require('./routes/artist');
+app.use('/api/artist/', artistRoute);
+
+//Album Routes
+const albumRoute = require('./routes/albums');
+app.use('/api/albums/', albumRoute);
+
+// //Songs Routes
+const songRoute = require('./routes/songs');
+app.use('/api/songs', songRoute);
+
 // ---------------------------------------------------------------
 
 
