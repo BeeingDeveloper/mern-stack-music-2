@@ -91,11 +91,12 @@ router.delete('/delete/:id', async(req, res)=>{
     const albumId = {_id: req.params.id};
 
     const data = await album.findOneAndDelete(albumId);
-    try{
-        return res.status(200).send({success: true, album: data});
-    }catch(error){
-        return res.status(400).send({success: false, msg: "No data found"});
+    if(data){
+        return res.status(200).send({success: true, album: data});        
+    }else{
+        return res.status(400).send({success: false, msg: "No data found"});  
     }
+
 })
 
 module.exports = router;

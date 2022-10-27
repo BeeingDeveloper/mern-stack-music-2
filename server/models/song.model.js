@@ -12,4 +12,4 @@ const songSchema = mongoose.Schema({
     timestamps: true
 })
 
-module.exports = mongoose.model('artist', songSchema);
+module.exports = mongoose.model('song', songSchema);
