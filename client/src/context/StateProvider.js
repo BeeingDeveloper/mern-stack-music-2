@@ -7,7 +7,11 @@ const StateProvider = (props) => {
 
 
     const initialState = {
-        user: null
+        user: null,
+        allUsers: null,
+        allSongs: null,
+        allArtists: null,
+        allAlbums: null
     }
 
     const [state, dispatch] = useReducer(reducer, initialState);

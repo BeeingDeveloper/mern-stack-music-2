@@ -54,7 +54,7 @@ const Navbar = () => {
             </NavLink>
 
             <ul className='flex items-center justify-center ml-7 gap-3'>
-                <a href='#home' onClick={()=>setActiveNav('#home')} className={activeNav === "#home" ? 'active' : ''} >
+                <a href='#home' onClick={()=>setActiveNav('#')} className={activeNav === "#home" ? 'active' : ''} >
                     <NavLink to={'/'} >Home</NavLink>    
                 </a>
                 <a href='#musics' onClick={()=>setActiveNav('#musics')} className={activeNav === "#musics" ? 'active' : ''} >

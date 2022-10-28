@@ -96,7 +96,7 @@ router.delete('/delete/:id', async(req, res)=>{
     }else{
         return res.status(400).send({success: false, msg: "No data found"});  
     }
-
-})
+});
+//----------------------------------------------------------------------------------
 
 module.exports = router;

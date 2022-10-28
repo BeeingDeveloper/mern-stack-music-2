@@ -14,3 +14,21 @@ export const validateUser = async(token)=>{
         // return res.status(500).send({message: error});
     }
 }
+
+export const getAllUsers = async()=>{
+    try {
+        const res = await axios.get(`${baseURL}api/users/getUsers`);
+        return res.data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export const getAllArtist = async()=>{
+    try {
+        const res = await axios.get(`${baseURL}api/artist/getAll`);
+        return res.data;
+    } catch (error) {
+        return null;
+    }
+}

@@ -1,7 +1,15 @@
 .active{
     color: red;
-    transition: 0.1s ease-in;
+    transition: 0.1s ease-in-out;
 }
 .active:hover{
-    color: rgb(41, 60, 78);
+    color: rgb(151, 24, 24);
+    font-size: 0.95rem;
+}
+a{
+    transition: all 0.3s ease-in-out;
+}
+a:hover{
+    color: rgb(151, 24, 24);
+    font-size: 0.95rem;
 }
