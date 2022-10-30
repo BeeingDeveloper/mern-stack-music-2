@@ -4,6 +4,7 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import DashboardHome from '../components/DashboardHome'
 import DashboardAlbum from './DashboardAlbum';
 import DashboardArtist from './DashboardArtist';
+import DashboardNewSong from './DashboardNewSong';
 import DashboardSongs from './DashboardSongs';
 import DashboardUser from './DashboardUser';
 
@@ -25,7 +26,7 @@ const Dashboard = () => {
           <Route path='/user' element={ <DashboardUser /> } />
           <Route path='/artist' element={ <DashboardArtist /> } />
           <Route path='/albums' element={ <DashboardAlbum /> } />
-          <Route path='/newSong' element={ <DashboardHome /> } />
+          <Route path='/newSong' element={ <DashboardNewSong /> } />
         </Routes>
       </div>
     </div>

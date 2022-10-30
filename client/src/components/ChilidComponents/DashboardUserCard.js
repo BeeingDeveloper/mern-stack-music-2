@@ -1,11 +1,13 @@
-import React, { useContext, useId } from 'react'
+import React, { useContext, useId, useState } from 'react'
 import { StateContext } from '../../context/StateProvider';
 
 const DashboardUserCard = ({key, userId, image, name, email, verified, createdAt, role}) => {
     
     const {state, dispatch} = useContext(StateContext);
-
     let newDate = new Date(createdAt).toLocaleDateString();
+
+    const [isPopup, setIsPopup] = useState(false);
+
 
     console.log(userId)
     return (
@@ -20,14 +22,13 @@ const DashboardUserCard = ({key, userId, image, name, email, verified, createdAt
         
             <h6 className='text-center mt-2 text-sm'> 
             {
-                state.user?.user?._id !== userId ? (
-                    <p className=' text-slate-100 bg-red-500 px-2 rounded-md ml-4 ' >
+                state.user?.user?._id !== userId && (
+                    <>
+                    <p className=' text-slate-100 bg-red-500 px-2 rounded-md ml-4 ' onClick={()=>setIsPopup(true)} >
                         {role === "admin" ? "member" : "admin"}
                     </p>
-                ) :
-                (
-                    <p></p>
-                )
+                    </>
+                ) 
             }
             </h6>        
         </h6>
