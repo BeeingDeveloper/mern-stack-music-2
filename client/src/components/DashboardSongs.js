@@ -16,11 +16,10 @@ const DashboardSongs = () => {
   useEffect(() => {
     if(!allSongs){
       getAllSongs().then((data)=>{
-        console.log(data.result)
         dispatch({type: actionType.SET_ALL_SONGS, allSongs: data.result})
-      })
+      });
     }
-  }, [])
+  }, []);
   
 
   return (
@@ -44,7 +43,7 @@ const DashboardSongs = () => {
           allSongs.map((elm)=>{
             return(
               <>
-                <SongCard imageURL={elm.imageURL} name={elm.name} artist={elm.artist} />
+                <SongCard key={elm._id} imageURL={elm.imageURL} name={elm.name} artist={elm.artist} />
               </>
             )
           })

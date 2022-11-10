@@ -3,7 +3,7 @@ import {BiCloudUpload} from 'react-icons/bi';
 import {getStorage, ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage'
 import {storage} from "../../config/firebase.config"
 
-const FileUploader = ({updateState, setProgress, isLoading, isImage}) => {
+const FileUploader = ({songCover, setProgress, isLoading, isImage}) => {
 
     const uploadFile = (e)=>{
         isLoading(true);
@@ -18,20 +18,23 @@ const FileUploader = ({updateState, setProgress, isLoading, isImage}) => {
             },
             ()=>{
                 getDownloadURL(uploadTask.snapshot.ref ).then((downloadURL)=>{
-                    updateState(downloadURL);
+                    songCover(downloadURL);
                     isLoading(false);
-                })
+                });
             }
-        
-        )
+        );
     }
 
   return (
     <label>
         <div className='flex flex-col items-center justify-center h-full' >
             <div className='flex flex-col items-center justify-center cursor-pointer' >
-                <p className='text-[3rem] text-red-600' ><BiCloudUpload /> </p>
-                <p className='text-lg text-red-600'> Click here to upload {isImage? "an image":"an audio"} </p>
+                <p className='text-[3rem] text-red-600' >
+                    <BiCloudUpload /> 
+                </p>
+                <p className='text-lg text-red-600'>
+                    Click here to upload {isImage? "an image":"an audio"} 
+                </p>
             </div>
             <input
                 type="file"

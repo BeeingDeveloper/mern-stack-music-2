@@ -18,7 +18,6 @@ const DashboardHome = () => {
   useEffect(() => {
     if(allUsers === null || allUsers === undefined){
       getAllUsers().then((data)=>{
-        console.log(data.result)
         dispatch({type: actionType.SET_ALL_USERS, allUsers: data.result})
       });
     }

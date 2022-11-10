@@ -7,7 +7,7 @@ const FileLoader = ({progress}) => {
             {Math.round(progress)>0 && <>{`${Math.round(progress)}%`}</> }
         </p>
         <div className='w-20 h-20 min-w-[40px] bg-red-600 animate-ping rounded-full flex items-center justify-center relative' >
-            <div className='absolute inset-0 rounded-full bg-red-600 blur-xl'></div>
+          <div className='relative inset-0 rounded-full bg-red-600 blur-xl'></div>
         </div>
     </div>
   )

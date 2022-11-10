@@ -50,3 +50,12 @@ export const getAllSongs = async()=>{
         return null;
     }
 }
+
+export const saveNewSong = async(data)=>{
+    try {
+        const res = await axios.post(`${baseURL}api/songs/save`, {...data});
+        return res.data.savedSong;
+    } catch (error) {
+        return null;
+    }
+}
